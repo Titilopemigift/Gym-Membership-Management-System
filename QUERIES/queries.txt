@@ -1,0 +1,25 @@
+1. List all members and their membership types:
+
+SELECT first_name, last_name, membership_type
+FROM members;
+
+2. Find all classes a specific member attended:
+
+SELECT m.first_name, m.last_name, c.class_name, ca.attendance_date
+FROM class_attendance ca
+JOIN members m ON ca.member_id = m.member_id
+JOIN classes c ON ca.class_id = c.class_id
+WHERE m.first_name = 'John' AND m.last_name = 'Doe';
+
+
+3. Find which trainer is leading which class:
+
+SELECT c.class_name, t.first_name, t.last_name
+FROM class_trainers ct
+JOIN classes c ON ct.class_id = c.class_id
+JOIN trainers t ON ct.trainer_id = t.trainer_id;
+
+4. Calculate total subscription fees from all members:
+
+SELECT SUM(subscription_fee) AS total_fees
+FROM memberships;
